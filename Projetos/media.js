@@ -4,11 +4,13 @@
 
 //importação do pacote readline-sync
 const read = require('readline-sync')
+//importação do pacote colors
+const colors = require('colors')
 
 //variáveis
 let nome, disciplina
 let nota1, nota2, media
-const reprovado = false, aprovado=false
+
 
 
 console.clear()                                                           
@@ -27,17 +29,21 @@ nota2 = Number(read.question("Digite a nota 2: "))
 //processamento
 media = (nota1 + nota2) / 2
 
-if (media>=6)
-    aprovado=true
-    else
-    reprovado=true
+
+
+
 
 //saída
 console.clear()
-console.log("------------Ficha do Aluno---------------")
+console.log("------------Ficha do Aluno---------------".bold)
 console.log(`Nome: ${nome}`)
 console.log(`Disciplina: ${disciplina}`)
 console.log(`Nota1: ${nota1}`)
 console.log(`Nota2: ${nota2}`)
 console.log(`Nota final: ${media}`)
+if (media<5){
+    console.log("Reprovado".bgRed.white)
+}else{
+    console.log("Aprovado".bgGreen.white)
+}
 console.log("-------------------------------------------")

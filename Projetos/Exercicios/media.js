@@ -41,9 +41,12 @@ console.log(`Disciplina: ${disciplina}`)
 console.log(`Nota1: ${nota1}`)
 console.log(`Nota2: ${nota2}`)
 console.log(`Nota final: ${media}`)
-if (media<5){
+if (media<2){
     console.log("Reprovado".bgRed.white)
-}else{
-    console.log("Aprovado".bgGreen.white)
-}
+}else if (media>2 && media<6){
+        console.log("Recuperação".bgYellow.white)
+
+    }else{
+        console.log("Aprovado".bgGreen.white)
+    }
 console.log("-------------------------------------------")

@@ -1,0 +1,12 @@
+{
+  "name": "bytebank",
+  "version": "1.0.0",
+  "description": "Projeto do bytebank para seus clientes",
+  "main": "object.js",
+  "scripts": {
+    "test": "node object.js"
+  },
+  "author": "Gustavo Teodoro Gabilan",
+  "license": "ISC",
+  "type": "module"
+}

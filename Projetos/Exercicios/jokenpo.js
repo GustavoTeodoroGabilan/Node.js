@@ -9,29 +9,30 @@ console.log("1. Pedra")
 console.log("2. Papel")
 console.log("3. Tesoura")
 escolha = Number(read.question("Digite a opção desejada:"))
- pc = Number(read.question("Digite a opção desejada para a maquina:"))//Math.floor(Math.random() * 3 + 1)
 
+pc = Math.floor(Math.random() * 3 + 1)
+
+console.clear()
 if (escolha == 1) {
     console.log(`Jogador escolheu pedra`)
-} else if (escolha == 1) {
+} else if (escolha == 2) {
     console.log("Jogador escolheu papel")
 } else {
     console.log("Jogador escolheu tesoura")
 }
 
-console.clear()
 if (pc == 1) {
     console.log(`Computador escolheu pedra`)
-} else if (pc == 1) {
+} else if (pc == 2) {
     console.log("Computador escolheu papel")
 } else {
     console.log("Computador escolheu tesoura")
 }
 
-if(escolha==pc){
+if (escolha == pc) {
     console.log("EMPATE!".yellow)
-}else if(escolha == 1 && pc == 3||escolha == 2 && pc == 1||escolha == 3 && pc == 2){
+} else if (escolha == 1 && pc == 3 || escolha == 2 && pc == 1 || escolha == 3 && pc == 2) {
     console.log("JOGADOR VENCE!!".green)
-}else{
+} else {
     console.log("COMPUTADOR VENCE!!".red)
 }

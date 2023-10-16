@@ -26,6 +26,10 @@ class Conta {
         console.log(`O saldo da conta do ${this.getNome()} é R$ ${this.getSaldo().toFixed(2)}.`.magenta);
     }
 
+    exibirConta() {
+        console.log(`O Cliente: ${this.getNome()} da conta: ${this.getNumero()}`);
+    }
+
     depositar(valor) {
         this._saldo += valor;
         console.log(`A conta de ${this._nome} recebeu um valor de R$ ${valor.toFixed(2)}`.green);
@@ -52,11 +56,22 @@ class Conta {
         }
     }
 
+    transferenciaPoup(valor, contaPoup){
+        if (valor <= this._saldo) {
+            //retira o valor da conta manipulada
+            this._saldo -= valor;
+            //chama o metodo depositar para a conta selecionada
+            contaPoup.depositar(valor)
+            console.log(`Transferencia por PIX para a conta ${contaPoup.getNome()} com valor de R$ ${valor.toFixed(2)} efetuada com sucesso`.green)
+        } else {
+            console.log(`Operação de transferenia da conta ${this._nome} para ${contaPoup.getNome()} no valor de R$ ${valor.toFixed(2)} negada! Saldo insuficiente`.red)
+        }
+    }
+
 }
 
 
 
-//cc2
 
 
 class ContaPoupanca extends Conta {
@@ -64,14 +79,17 @@ class ContaPoupanca extends Conta {
         super(numero, nome, saldo);
     }
 
+    exibirContaPoupanca() {
+        console.log(`O Cliente ${this.getNome()} da conta poupanca ${this.getNumero()}`);
+    }
+
     exibirSaldoPoupanca() {
-        console.log(`Saldo da conta corrente de ${this.getSaldo()}`.magenta)
+        console.log(`Saldo da conta poupanca de ${this.getNome()} é R$ ${this.getSaldo()}`.magenta)
     }
 
 }
 
 
-//start
 console.clear()
 console.log("'########:::::'###::::'##::: ##::'######:::'#######::::: ")
 console.log(" ##.... ##:::'## ##::: ###:: ##:'##... ##:'##.... ##::::")
@@ -87,20 +105,25 @@ console.log("--------------------------------CONTAS-----------------------------
 const leandro = new Conta(1, "Leandro Ramos", 10000)
 const sirlene = new Conta(2, "Sirlene Aparecida", 19000)
 const robson = new Conta(3, "Robson Vaamond", 20000)
-const robsonPoupanca = new ContaPoupanca (1, "Robson Vaamond", 1000)
-const josePoupanca = new ContaPoupanca(2, "Jose de Assis", 30000)
+const robsonPoupanca = new ContaPoupanca(1, "Robson Vaamond", 1000)
 
-console.log(`O Cliente: ${leandro.getNome()} da conta: ${leandro.getNumero()}`);
+leandro.exibirConta()
 leandro.exibirSaldo();
 
-console.log(`O Cliente: ${sirlene.getNome()} da conta: ${sirlene.getNumero()}`);
+console.log("")
+
+sirlene.exibirConta()
 sirlene.exibirSaldo();
 
-console.log(`O Cliente: ${robson.getNome()} da conta: ${robson.getNumero()}`);
+console.log("")
+
+robson.exibirConta()
 robson.exibirSaldo();
 
-console.log(`O Cliente: ${robsonPoupanca.getNome()} da conta: ${robsonPoupanca.getNumero()}`);
-robsonPoupanca.exibirSaldo();
+console.log("")
+
+robsonPoupanca.exibirContaPoupanca()
+robsonPoupanca.exibirSaldoPoupanca();
 
 
 
@@ -109,9 +132,13 @@ console.log("----------------------------PAGAMENTOS E TRANSFERENCIAS------------
 
 leandro.depositar(300)
 sirlene.sacar(400)
-robson.pix(600, robsonPoupanca)
+robson.pix(600, leandro)
+robson.transferenciaPoup(400, robsonPoupanca)
+
+
 sirlene.sacar(1000000)
-robson.pix(600000000, josePoupanca)
+
+robson.pix(600000000, robsonPoupanca)
 
 console.log('')
 console.log("--------------------------------SALDO GERAL--------------------------------------")
@@ -119,5 +146,3 @@ leandro.exibirSaldo()
 sirlene.exibirSaldo()
 robson.exibirSaldo()
 robsonPoupanca.exibirSaldoPoupanca()
-
-
